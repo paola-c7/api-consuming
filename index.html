@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista Almum</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .lista-album {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .album {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 15px;
+      cursor: pointer;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2em;
+      transition: transform 0.2s ease;
+    }
+    .album:hover {
+      transform: scale(1.05);
+      background: #e0f7fa;
+    }
+    .modale {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .contenuto-modale {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+    }
+    .chiudi-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      float: right;
+    }
+  </style>
+</head>
+<body>
+  <h1>Seleziona un numero per scoprire di che album si tratta</h1>
+  <div id="album-container" class="lista-album"></div>
+
+  <div id="modale" class="modale">
+    <div class="contenuto-modale">
+      <button class="chiudi-btn" onclick="chiudiModale()">Chiudi</button>
+      <h2 id="titolo-modale"></h2>
+      <p><strong>ID album:</strong> <span id="id-album"></span></p>
+      <p><strong>ID utente:</strong> <span id="id-utente"></span></p>
+    </div>
+  </div>
+
+  <script>
+    async function caricaAlbum() {
+      try {
+        const risposta = await fetch('https://jsonplaceholder.typicode.com/albums');
+        const dati = await risposta.json();
+        mostraAlbum(dati);
+      } catch (errore) {
+        console.error('Errore nel recupero degli album:', errore);
+      }
+    }
+
+    function mostraAlbum(album) {
+      const contenitore = document.getElementById('album-container');
+      contenitore.innerHTML = '';
+      album.forEach(a => {
+        const div = document.createElement('div');
+        div.className = 'album';
+        div.textContent = `ID ${a.id}`;
+        div.addEventListener('click', () => apriModale(a));
+        contenitore.appendChild(div);
+      });
+    }
+
+    function apriModale(album) {
+      document.getElementById('titolo-modale').textContent = album.title;
+      document.getElementById('id-album').textContent = album.id;
+      document.getElementById('id-utente').textContent = album.userId;
+      document.getElementById('modale').style.display = 'flex';
+    }
+
+    function chiudiModale() {
+      document.getElementById('modale').style.display = 'none';
+    }
+
+    caricaAlbum();
+  </script>
+</body>
+</html>
