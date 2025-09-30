@@ -18,18 +18,14 @@ h1 {
 
 .box {
   background: white;
-  padding: 10px;
+  padding: 15px;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   flex: 1 1 300px;
-  max-width: 600px;
+  max-width: 400px;
 }
 
-.box h2 {
-  margin-top: 0;
-}
-
-input, textarea {
+input {
   width: calc(100% - 20px);
   padding: 10px;
   margin: 5px 0;
@@ -59,56 +55,19 @@ button:hover {
   background: #c0392b;
 }
 
-.lista-album {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.album {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 15px;
-  cursor: pointer;
+/* Messaggi di stato */
+.messaggio {
   text-align: center;
+  margin-top: 20px;
+  font-size: 1.1em;
   font-weight: bold;
-  font-size: 1.2em;
-  transition: transform 0.2s ease;
 }
 
-.album:hover {
-  transform: scale(1.05);
-  background: #e0f7fa;
+.messaggio.successo {
+  color: green;
 }
 
-.modale {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
+.messaggio.errore {
+  color: red;
 }
 
-.contenuto-modale {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 400px;
-  width: 90%;
-}
-
-.chiudi-btn {
-  background: #e74c3c;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  float: right;
-}
