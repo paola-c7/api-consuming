@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lista Album con CRUD</title>
+  <title>Gestione Album (CRUD)</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Gestione Album (CRUD)</h1>
+  <h1>Gestione Album </h1>
 
   <!-- CRUD CONTENITORE -->
   <div class="crud-container">
@@ -19,7 +19,7 @@
       <button onclick="aggiungiAlbum()">Aggiungi</button>
     </div>
 
-    <!-- Aggiornamento risorsa -->
+    <!-- Aggiornamento album -->
     <div class="box">
       <h2>Aggiorna album</h2>
       <input type="number" id="update-id" placeholder="ID album da aggiornare" />
@@ -28,7 +28,7 @@
       <button onclick="aggiornaAlbum()">Aggiorna</button>
     </div>
 
-    <!-- Cancellazione risorsa -->
+    <!-- Cancellazione album -->
     <div class="box">
       <h2>Cancella album</h2>
       <input type="number" id="delete-id" placeholder="ID album da cancellare" />
@@ -36,19 +36,10 @@
     </div>
   </div>
 
-  <!-- Griglia album -->
-  <div id="album-container" class="lista-album"></div>
-
-  <!-- Modale album -->
-  <div id="modale" class="modale">
-    <div class="contenuto-modale">
-      <button class="chiudi-btn" onclick="chiudiModale()">Chiudi</button>
-      <h2 id="titolo-modale"></h2>
-      <p><strong>ID album:</strong> <span id="id-album"></span></p>
-      <p><strong>ID utente:</strong> <span id="id-utente"></span></p>
-    </div>
-  </div>
+  <!-- Messaggi di stato -->
+  <div id="messaggio" class="messaggio"></div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
